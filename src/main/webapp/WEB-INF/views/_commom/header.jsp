@@ -34,16 +34,16 @@
 					<li>
 						<a href="#">
 							<i class="fa fa-car"></i>
-							Entradas
+							<fmt:message key="inputs" />
 						</a>
 					</li>
 					<li class="active">
 						<a href="#">
 							<i class="fa fa-cog"></i>
-							Configurações
+							<fmt:message key="settings"/>
 						</a>
 					</li>
-<!-- 					<li>
+					<!--<li>
 						<p class="navbar-text">
 							User Name
 							<a href="#" class="navbar-link">
@@ -56,3 +56,12 @@
 			<!--/.nav-collapse -->
 		</div>
 	</nav>
+
+	<div class="container">
+		<ol class="breadcrumb">
+			<li><a href="#">Home</a></li>
+			<li><a href="#">Library</a></li>
+			<li class="active">Data</li>
+		</ol>
+	</div>
+	
