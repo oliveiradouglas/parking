@@ -13,5 +13,7 @@
 	<body>
 		<h1>H1</h1>
 		<fmt:message key="app.name" />
+		<br />
+		<fmt:formatNumber value="10" type="currency" />
 	</body>
 </html>
