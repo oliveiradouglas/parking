@@ -1,19 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+	
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>
-			
-		</title>
-	</head>
-	<body>
-		<h1>H1</h1>
-		<fmt:message key="app.name" />
-		<br />
-		<fmt:formatNumber value="10" type="currency" />
-	</body>
-</html>
+<c:import url = "../_commom/header.jsp" />
+	<div class="container">
+		<h1>Ok</h1>
+	</div>
+<c:import url = "../_commom/footer.jsp" />
