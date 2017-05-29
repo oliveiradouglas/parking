@@ -12,6 +12,47 @@
 		</title>
 		
 		<link href="<c:url value="/public/css/bootstrap.min.css"/>" rel="stylesheet" type="text/css" />
+		<link href="<c:url value="/public/css/font-awesome.min.css"/>" rel="stylesheet" type="text/css" />
 		<script type="text/javascript" src="<c:url value="/public/js/jquery-3.2.1.min.js"/>"></script>
 	</head>
 	<body>
+
+	<nav class="navbar navbar-inverse navbar-static-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">Project name</a>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li>
+						<a href="#">
+							<i class="fa fa-car"></i>
+							Entradas
+						</a>
+					</li>
+					<li class="active">
+						<a href="#">
+							<i class="fa fa-cog"></i>
+							Configurações
+						</a>
+					</li>
+<!-- 					<li>
+						<p class="navbar-text">
+							User Name
+							<a href="#" class="navbar-link">
+								<i class="fa fa-sign-out"></i>
+							</a>
+						</p>
+					</li> -->
+				</ul>
+			</div>
+			<!--/.nav-collapse -->
+		</div>
+	</nav>
