@@ -59,9 +59,13 @@
 
 	<div class="container">
 		<ol class="breadcrumb">
-			<li><a href="#">Home</a></li>
-			<li><a href="#">Library</a></li>
-			<li class="active">Data</li>
+			<c:forEach var="breadcrumb" items="${breadcrumbList}">
+				<li class="${breadcrumb.active ? "active" : ""}">
+					<a href="${breadcrumb.link}">
+						${breadcrumb.text}
+					</a>
+				</li>
+			</c:forEach>	
 		</ol>
 	</div>
 	
