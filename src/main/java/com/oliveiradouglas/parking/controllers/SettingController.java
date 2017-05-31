@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.oliveiradouglas.src.Breadcrumb;
+import com.oliveiradouglas.src.MessagesHelper;
 
 @WebServlet(urlPatterns="/settings")
 public class SettingController extends HttpServlet {
@@ -20,8 +21,7 @@ public class SettingController extends HttpServlet {
 			throws ServletException, IOException {
 		
 		List<Breadcrumb> breadcrumbs = new ArrayList<>();
-		// internacionalizar
-		breadcrumbs.add(new Breadcrumb("#", "Configurações", true));
+		breadcrumbs.add(new Breadcrumb("#", MessagesHelper.getMessage("settings", req.getLocale()), true));
 		req.setAttribute("breadcrumbList", breadcrumbs);
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/setting/index.jsp");
