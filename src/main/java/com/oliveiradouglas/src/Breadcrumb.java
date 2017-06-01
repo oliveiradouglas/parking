@@ -2,12 +2,12 @@ package com.oliveiradouglas.src;
 
 public class Breadcrumb {
 	private String link;
-	private String text;
+	private String messageKey;
 	private boolean active;
 	
-	public Breadcrumb(String link, String text, boolean active) {
+	public Breadcrumb(String link, String messageKey, boolean active) {
 		this.link = link;
-		this.text = text;
+		this.messageKey = messageKey;
 		this.active = active;
 	}
 
@@ -15,8 +15,8 @@ public class Breadcrumb {
 		return link;
 	}
 
-	public String getText() {
-		return text;
+	public String getMessageKey() {
+		return messageKey;
 	}
 
 	public boolean isActive() {

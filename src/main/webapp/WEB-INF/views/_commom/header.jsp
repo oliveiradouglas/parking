@@ -58,14 +58,14 @@
 					<c:choose>
 						<c:when test="${breadcrumb.active}">
 							<li> 
-								${breadcrumb.text} 
+								<fmt:message key="${breadcrumb.messageKey}" />  
 							</li>
 						</c:when>
 						
 						<c:otherwise>
 							<li class="active">
 								<a href="${breadcrumb.link}"> 
-									${breadcrumb.text} 
+									<fmt:message key="${breadcrumb.messageKey}" /> 
 								</a>
 							</li>
 						</c:otherwise>
