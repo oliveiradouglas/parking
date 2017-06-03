@@ -9,5 +9,10 @@
 	    </footer>
 	    
 	    <script type="text/javascript" src="<c:url value="/public/js/bootstrap.min.js"/>"></script>
+	    <script type="text/javascript" src="<c:url value="/public/js/parking.js"/>"></script>
+	    
+	    <script type="text/javascript">
+	    	$('#menu-${activeMenu}').addClass('active');
+	    </script>
 	</body>
 </html>

@@ -13,6 +13,7 @@
 	
 		<link href="<c:url value="/public/css/bootstrap.min.css"/>" rel="stylesheet" type="text/css" />
 		<link href="<c:url value="/public/css/font-awesome.min.css"/>" rel="stylesheet" type="text/css" />
+		<link href="<c:url value="/public/css/parking.css"/>" rel="stylesheet" type="text/css" />
 		
 		<script type="text/javascript" src="<c:url value="/public/js/jquery-3.2.1.min.js"/>"></script>
 	</head>
@@ -32,12 +33,19 @@
 				</div>
 				<div id="navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="#"> <i class="fa fa-car"></i> <fmt:message
-									key="inputs" />
-						</a></li>
-						<li class="active"><a href="#"> <i class="fa fa-cog"></i>
+						<li id="menu-vehicles">
+							<a href="<c:url value="/vehicles" />"> 
+								<i class="fa fa-car"></i> 
+								<fmt:message key="vehicles" />
+							</a>
+						</li>
+						
+						<li id="menu-settings">
+							<a href="<c:url value="/settings" />"> 
+								<i class="fa fa-cog"></i>
 								<fmt:message key="settings" />
-						</a></li>
+							</a>
+						</li>
 						<!--<li>
 							<p class="navbar-text">
 								User Name
