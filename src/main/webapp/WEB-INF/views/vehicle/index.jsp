@@ -8,9 +8,9 @@
 	<div class="container">
 		<div class="row row-actions">
 			<div class="col-md-12">
-				<a href="<c:url value="/vehicles/entry" />" class="btn btn-primary fa fa-plus">
+				<button type="button" class="btn btn-primary fa fa-plus" id="new-vehicle-entry">
 					<fmt:message key="new.vehicle.entry" />
-				</a>			
+				</button>
 			</div>
 		</div>
 		
@@ -57,5 +57,6 @@
 	<link href="<c:url value="/public/css/dataTables.bootstrap.min.css"/>" rel="stylesheet" type="text/css" />
 	<script type="text/javascript" src="<c:url value="/public/js/jquery.dataTables.min.js" />"></script>
 	<script type="text/javascript" src="<c:url value="/public/js/dataTables.bootstrap.min.js" />"></script>
-	<c:import url="../components/initDatatable.jsp" />
+	<c:import url="../components/start-datatable.jsp" />
+	<c:import url="vehicle-entry-modal.jsp" />
 <c:import url="../commom/foot.jsp" />
