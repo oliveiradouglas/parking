@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-<c:import url="../_commom/header.jsp" />
+<c:import url="../commom/head.jsp" />
 	<div class="container">
 		<div class="row row-actions">
 			<div class="col-md-12">
@@ -28,32 +28,26 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td>Ford</td>
-							<td>Fiesta</td>
-							<td>Branco</td>
-							<td>FWZ-1645</td>
-							<td>02/06/2017 16:37</td>
-							<td>-</td>
-						</tr>
-						
-						<tr>
-							<td>Volksvagem</td>
-							<td>Gol</td>
-							<td>Prata</td>
-							<td>BUQ-7360</td>
-							<td>02/06/2017 12:02</td>
-							<td>-</td>
-						</tr>
-						
-						<tr>
-							<td>Chevrolet</td>
-							<td>Meriva</td>
-							<td>Preto</td>
-							<td>DKW-8301</td>
-							<td>02/06/2017 07:53</td>
-							<td>-</td>
-						</tr>
+						<c:forEach var="vehicle" items="${vehicles}">							
+							<tr>
+								<td>${vehicle.mark}</td>
+								<td>${vehicle.model}</td>
+								<td>${vehicle.color}</td>
+								<td>${vehicle.plate}</td>
+								<td>
+									<fmt:formatDate value="${vehicle.entry}" type="both" dateStyle="short" timeStyle="short"/>
+								</td>
+								<td class="text-center">
+									<button type="button" class="btn btn-default" title="<fmt:message key="view.details" />" data-item="${vehicle.id}">
+										<i class="fa fa-eye"></i>
+									</button>
+									
+									<button type="button" class="btn btn-danger" title="<fmt:message key="give.low" />" data-item="${vehicle.id}">
+										<i class="fa fa-arrow-down"></i>
+									</button>
+								</td>
+							</tr>
+						</c:forEach>
 					</tbody>
 				</table>			
 			</div>
@@ -63,4 +57,5 @@
 	<link href="<c:url value="/public/css/dataTables.bootstrap.min.css"/>" rel="stylesheet" type="text/css" />
 	<script type="text/javascript" src="<c:url value="/public/js/jquery.dataTables.min.js" />"></script>
 	<script type="text/javascript" src="<c:url value="/public/js/dataTables.bootstrap.min.js" />"></script>
-<c:import url="../_commom/footer.jsp" />
+	<c:import url="../components/initDatatable.jsp" />
+<c:import url="../commom/foot.jsp" />

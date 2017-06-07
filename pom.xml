@@ -5,7 +5,7 @@
 	<artifactId>parking</artifactId>
 	<packaging>war</packaging>
 	<version>1.0.0-SNAPSHOT</version>
-	<name>parking Maven Webapp</name>
+	<name>Parking</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
 		<dependency>

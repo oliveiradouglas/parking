@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-<c:import url="../_commom/header.jsp" />
+<c:import url="../commom/head.jsp" />
 <div class="container">
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
@@ -54,7 +54,7 @@
 		</div>
 	</div>
 </div>
-<c:import url="../_commom/footer.jsp" />
+<c:import url="../commom/foot.jsp" />
 
 <script type="text/javascript" src="<c:url value="/public/js/jquery.maskMoney.min.js" />"></script>
 <script type="text/javascript">
