@@ -28,7 +28,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="vehicle" items="${vehicles}">							
+						<c:forEach var="vehicle" items="${vehicles}">						
 							<tr>
 								<td>${vehicle.mark}</td>
 								<td>${vehicle.model}</td>
@@ -42,7 +42,7 @@
 										<i class="fa fa-eye"></i>
 									</button>
 									
-									<button type="button" class="btn btn-danger" title="<fmt:message key="give.low" />" data-item="${vehicle.id}">
+									<button type="button" class="btn btn-danger btn-vehicle-exit" title="<fmt:message key="give.low" />" data-item="${vehicle.id}">
 										<i class="fa fa-arrow-down"></i>
 									</button>
 								</td>
@@ -59,4 +59,5 @@
 	<script type="text/javascript" src="<c:url value="/public/js/dataTables.bootstrap.min.js" />"></script>
 	<c:import url="../components/start-datatable.jsp" />
 	<c:import url="vehicle-entry-modal.jsp" />
+	<c:import url="vehicle-exit-modal.jsp" />
 <c:import url="../commom/foot.jsp" />

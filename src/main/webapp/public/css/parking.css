@@ -1,3 +1,8 @@
 .row-actions {
 	margin-bottom: 5%;
 }
+
+#ve-total-box {
+	font-size: 3em;
+	color: #ff0000;
+}

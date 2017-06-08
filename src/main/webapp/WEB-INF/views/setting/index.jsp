@@ -21,7 +21,7 @@
 								<fmt:message key="parking.name" />
 							</label>
 							<div class="col-sm-7">
-								<input type="text" class="form-control" placeholder="<fmt:message key="parking.name" />" name="parking_name" maxlength="60" />
+								<input type="text" class="form-control" placeholder="<fmt:message key="parking.name" />" name="parking_name" maxlength="30" />
 							</div>
 						</div>
 						
