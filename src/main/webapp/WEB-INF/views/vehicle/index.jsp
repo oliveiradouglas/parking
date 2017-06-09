@@ -19,21 +19,19 @@
 				<table class="table table-bordered table-hover datatable">
 					<thead>
 						<tr>
-							<th><fmt:message key="mark" /></th>
-							<th><fmt:message key="model" /></th>
+							<th><fmt:message key="vehicle" /></th>
 							<th><fmt:message key="color" /></th>
-							<th><fmt:message key="plate" /></th>
+							<th><fmt:message key="vehicle.plate" /></th>
 							<th><fmt:message key="entry" /></th>
 							<th><fmt:message key="actions" /></th>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="vehicle" items="${vehicles}">						
+						<c:forEach var="parkingControl" items="${parkingControls}">						
 							<tr>
-								<td>${vehicle.mark}</td>
-								<td>${vehicle.model}</td>
-								<td>${vehicle.color}</td>
-								<td>${vehicle.plate}</td>
+								<td>${parkingControl.vehicle.description}</td>
+								<td>${parkingControl.color}</td>
+								<td>${parkingControl.vehicle_plate}</td>
 								<td>
 									<fmt:formatDate value="${vehicle.entry}" type="both" dateStyle="short" timeStyle="short"/>
 								</td>

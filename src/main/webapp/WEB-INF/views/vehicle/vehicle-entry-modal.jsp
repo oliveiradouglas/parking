@@ -44,11 +44,11 @@
 					
 					<div class="form-group">
 						<label class="control-label col-sm-4"> 
-							<fmt:message key="plate" />
+							<fmt:message key="vehicle.plate" />
 						</label>
 						
 						<div class="col-sm-7">
-							<input type="text" class="form-control" maxlength="8" name="plate" placeholder="AAA-0000" />
+							<input type="text" class="form-control" maxlength="8" name="vehicle_plate" placeholder="AAA-0000" />
 						</div>
 					</div>
 					

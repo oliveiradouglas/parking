@@ -27,11 +27,11 @@
 						
 						<div class="col-sm-6">
 							<label class="col-sm-12"> 
-								<fmt:message key="plate" />
+								<fmt:message key="vehicle.plate" />
 							</label>
 							
 							<div class="col-sm-12">
-								<input type="text" class="form-control" disabled="disabled" id="ve-plate" />
+								<input type="text" class="form-control" disabled="disabled" id="ve-vehicle-plate" />
 							</div>
 						</div>
 					</div>
