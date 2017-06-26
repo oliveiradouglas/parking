@@ -1,6 +1,6 @@
 package com.oliveiradouglas.parking.models;
 
-public class Vehicle {
+public class Color {
 	private int id;
-	private String description;
+	private String name;
 }

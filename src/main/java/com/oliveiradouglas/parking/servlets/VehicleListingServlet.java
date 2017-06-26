@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.oliveiradouglas.parking.models.Vehicle;
+import com.oliveiradouglas.parking.models.ParkingControl;
 import com.oliveiradouglas.src.Breadcrumb;
 
 @WebServlet(urlPatterns = "/vehicles")
@@ -23,7 +23,7 @@ public class VehicleListingServlet extends HttpServlet {
 		List<Breadcrumb> breadcrumbs = new ArrayList<>();
 		breadcrumbs.add(new Breadcrumb("#", "vehicles", true));
 		req.setAttribute("breadcrumbList", breadcrumbs);
-		req.setAttribute("vehicles", new ArrayList<Vehicle>());
+		req.setAttribute("vehicles", new ArrayList<ParkingControl>());
 		req.setAttribute("activeMenu", "vehicles");
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/views/vehicle/index.jsp");
