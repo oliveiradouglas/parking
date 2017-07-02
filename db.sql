@@ -18,6 +18,20 @@ CREATE TABLE IF NOT EXISTS colors (
 ALTER TABLE colors ADD CONSTRAINT pk_colors PRIMARY KEY (id);
 ALTER TABLE colors MODIFY id INT(11) AUTO_INCREMENT;
 
+insert into parking.colors (name) values 
+("Vermelho"),
+("Amarelo"),
+("Azul"),
+("Verde"),
+("Preto"),
+("Roxo"),
+("Laranja"),
+("Marrom"),
+("Prata"),
+("Rosa"),
+("Branco"),
+("Outra");
+
 CREATE TABLE IF NOT EXISTS parking_control (
 	id INT(11),
 	vehicle_id INT(11) NOT NULL,

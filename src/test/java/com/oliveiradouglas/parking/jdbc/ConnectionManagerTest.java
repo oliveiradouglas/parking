@@ -1,8 +1,11 @@
 package com.oliveiradouglas.parking.jdbc;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 
 import org.junit.Test;
 
@@ -16,10 +19,20 @@ public class ConnectionManagerTest {
 	}
 	
 	@Test
-	public void testGetConnectionMustAlwayReturnTheSameConnection() {
+	public void testGetConnectionMustReturnAConnection() throws SQLException {
+		Connection connection1 = ConnectionManager.getInstance().getConnection();
+		assertNotNull(connection1);
+		connection1.close();
+	}
+	
+	@Test
+	public void testGetConnectionMustReturnMultipleConnections() throws SQLException {
 		Connection connection1 = ConnectionManager.getInstance().getConnection();
 		Connection connection2 = ConnectionManager.getInstance().getConnection();
 		
-		assertEquals(connection1, connection2);
+		assertFalse(connection1.equals(connection2));
+		
+		connection1.close();
+		connection2.close();
 	}
 }
