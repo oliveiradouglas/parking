@@ -1,15 +1,50 @@
 package com.oliveiradouglas.parking.models;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class ParkingControl {
 	private int id;
 	private Vehicle vehicle;
-	private Color color;
-	private String vehiclePlate;
 	private String notes;
-	private Date entry;
-	private Date exit;
+	private LocalDateTime entry;
+	private LocalDateTime exit;
+
+	public ParkingControl(Vehicle vehicle, LocalDateTime entry) {
+		this.vehicle = vehicle;
+		this.entry = entry;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public Vehicle getVehicle() {
+		return vehicle;
+	}
+
+	public String getNotes() {
+		return notes;
+	}
+
+	public void setNotes(String notes) {
+		this.notes = notes;
+	}
+
+	public LocalDateTime getEntry() {
+		return entry;
+	}
+
+	public LocalDateTime getExit() {
+		return exit;
+	}
+
+	public void setExit(LocalDateTime exit) {
+		this.exit = exit;
+	}
 
 	@Override
 	public int hashCode() {

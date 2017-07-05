@@ -14,8 +14,8 @@ public class ColorDAO extends DAO {
 		return "colors";
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
+	@SuppressWarnings("unchecked")
 	public List<Color> makeListFromResultSet(ResultSet rs) {
 		List<Color> colors = new ArrayList<>();
 		
