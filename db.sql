@@ -2,14 +2,6 @@ CREATE DATABASE IF NOT EXISTS parking;
 
 USE parking;
 
-CREATE TABLE IF NOT EXISTS vehicle_models (
-	id INT(11),
-	description VARCHAR(50) NOT NULL
-);
-
-ALTER TABLE vehicle_models ADD CONSTRAINT pk_vehicle_models PRIMARY KEY (id);
-ALTER TABLE vehicle_models MODIFY id INT(11) AUTO_INCREMENT;
-
 CREATE TABLE IF NOT EXISTS colors (
 	id INT(11),
 	name VARCHAR(50) NOT NULL
@@ -31,6 +23,39 @@ insert into parking.colors (name) values
 ("Rosa"),
 ("Branco"),
 ("Outra");
+
+CREATE TABLE IF NOT EXISTS vehicle_brands (
+	id INT(11),
+	name VARCHAR(50) NOT NULL
+);
+
+ALTER TABLE vehicle_brands ADD CONSTRAINT pk_vehicle_brands PRIMARY KEY (id);
+ALTER TABLE vehicle_brands MODIFY id INT(11) AUTO_INCREMENT;
+
+insert into vehicle_brands (name) values ("Ford");
+
+CREATE TABLE IF NOT EXISTS vehicle_models (
+	id INT(11),
+	vehicle_brand_id INT(11) NOT NULL,
+	description VARCHAR(50) NOT NULL,
+	type VARCHAR(20) NOT NULL
+);
+
+ALTER TABLE vehicle_models ADD CONSTRAINT pk_vehicle_models PRIMARY KEY (id);
+ALTER TABLE vehicle_models MODIFY id INT(11) AUTO_INCREMENT;
+ALTER TABLE vehicle_models ADD CONSTRAINT fk_vehicle_models_vehicle_brands FOREIGN KEY (vehicle_brand_id) REFERENCES vehicle_brands (id);
+
+
+
+
+
+
+
+
+
+
+
+
 
 CREATE TABLE IF NOT EXISTS vehicles (
 	id INT(11),

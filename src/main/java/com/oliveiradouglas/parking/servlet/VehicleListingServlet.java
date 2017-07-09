@@ -1,4 +1,4 @@
-package com.oliveiradouglas.parking.servlets;
+package com.oliveiradouglas.parking.servlet;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.oliveiradouglas.parking.models.ParkingControl;
+import com.oliveiradouglas.parking.model.ParkingControl;
 import com.oliveiradouglas.src.Breadcrumb;
 
 @WebServlet(urlPatterns = "/vehicles")

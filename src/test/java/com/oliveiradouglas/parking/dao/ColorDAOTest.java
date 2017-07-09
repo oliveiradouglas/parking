@@ -2,25 +2,30 @@ package com.oliveiradouglas.parking.dao;
 
 import static org.junit.Assert.assertEquals;
 
-import java.sql.SQLException;
 import java.util.List;
 
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.oliveiradouglas.parking.models.Color;
+import com.oliveiradouglas.parking.model.Color;
 
 public class ColorDAOTest {
-	private ColorDAO colorDAO;
+	private static ColorDAO dao;
 
-	@Before
-	public void before() throws SQLException {
-		colorDAO = new ColorDAO();
+	@BeforeClass
+	public static void init() {
+		dao = new ColorDAO();
 	}
 	
 	@Test
-	public void testFindAll() {
-		List<Color> colors = colorDAO.findAll();
+	public void testFindAllMustReturnAllRegistredColors() {
+		List<Color> colors = dao.findAll();
 		assertEquals(12, colors.size());
+		assertEquals("Outra", colors.get(colors.size()-1).getName());
+	}
+	
+	@Test
+	public void testGetTableNameMustReturnColors() {
+		assertEquals("colors", dao.getTableName());
 	}
 }

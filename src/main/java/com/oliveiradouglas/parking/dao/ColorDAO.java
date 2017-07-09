@@ -5,8 +5,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.oliveiradouglas.parking.models.Color;
-
+import com.oliveiradouglas.parking.jdbc.DAO;
+import com.oliveiradouglas.parking.model.Color;
 
 public class ColorDAO extends DAO {
 	@Override
@@ -16,15 +16,13 @@ public class ColorDAO extends DAO {
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<Color> makeListFromResultSet(ResultSet rs) {
+	protected List<Color> makeListFromResultSet(ResultSet rs) {
 		List<Color> colors = new ArrayList<>();
-		
+
 		try {
 			while (rs.next()) {
-				Color color = new Color();
-				color.setId(rs.getInt("id"));				
-				color.setName(rs.getString("name"));
-				
+				Color color = new Color(rs.getString("name"));
+				color.setId(rs.getInt("id"));
 				colors.add(color);
 			}
 
@@ -32,7 +30,6 @@ public class ColorDAO extends DAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 			return null;
-		}		
+		}
 	}
-	
 }

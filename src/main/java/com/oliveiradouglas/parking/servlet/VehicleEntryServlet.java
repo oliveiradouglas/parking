@@ -1,4 +1,4 @@
-package com.oliveiradouglas.parking.servlets;
+package com.oliveiradouglas.parking.servlet;
 
 import javax.servlet.http.HttpServlet;
 
