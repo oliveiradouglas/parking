@@ -15,13 +15,18 @@
 				</div>
 
 				<div class="panel-body">
-					<form class="form-horizontal">
+					<form class="form-horizontal" id="settings-form" method="POST">
 						<div class="form-group">
 							<label class="control-label col-sm-4">
 								<fmt:message key="parking.name" />
 							</label>
 							<div class="col-sm-7">
-								<input type="text" class="form-control" placeholder="<fmt:message key="parking.name" />" name="parking_name" maxlength="30" />
+								<input type="text" class="form-control"
+								 placeholder="<fmt:message key="parking.name" />" 
+								 name="parking_name" 
+								 value="${ setting != null ? setting.parkingName : '' }" 
+								 maxlength="30" 
+								 required />
 							</div>
 						</div>
 						
@@ -30,7 +35,12 @@
 								<fmt:message key="first.hour.value" />
 							</label>
 							<div class="col-sm-7">
-								<input type="text" class="form-control money" placeholder="<fmt:message key="type.value" />" name="first_hour_value" maxlength="6" />
+								<input type="text" class="form-control money" 
+								placeholder="<fmt:message key="type.value" />" 
+								name="first_hour_value" 
+								value="<fmt:formatNumber value="${ setting != null ? setting.firstHourValue : '' }" type="currency" currencySymbol="" />"" 
+								maxlength="6"
+								required />
 							</div>
 						</div>
 						
@@ -39,7 +49,12 @@
 								<fmt:message key="other.hours.value" />
 							</label>
 							<div class="col-sm-7">
-								<input type="text" class="form-control money" placeholder="<fmt:message key="type.value" />" name="other_hours_value" maxlength="6" />
+								<input type="text" class="form-control money" 
+								placeholder="<fmt:message key="type.value" />" 
+								name="other_hours_value" 
+								value="<fmt:formatNumber value="${ setting != null ? setting.otherHoursValue : '' }" type="currency" currencySymbol="" />" 
+								maxlength="6"
+								required />
 							</div>
 						</div>
 						

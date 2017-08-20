@@ -2,6 +2,19 @@ CREATE DATABASE IF NOT EXISTS parking;
 
 USE parking;
 
+-- ok
+CREATE TABLE IF NOT EXISTS settings (
+	id INT(11),
+	parking_name VARCHAR(30) NOT NULL,
+	first_hour_value DECIMAL(12,2) NOT NULL,
+	other_hours_value DECIMAL(12,2) NOT NULL
+);
+
+ALTER TABLE settings ADD CONSTRAINT pk_settings PRIMARY KEY (id);
+ALTER TABLE settings MODIFY id INT(11) AUTO_INCREMENT;
+
+
+
 CREATE TABLE IF NOT EXISTS colors (
 	id INT(11),
 	name VARCHAR(50) NOT NULL
@@ -80,13 +93,3 @@ CREATE TABLE IF NOT EXISTS parking_control (
 ALTER TABLE parking_control ADD CONSTRAINT pk_parking_control PRIMARY KEY (id);
 ALTER TABLE parking_control MODIFY id INT(11) AUTO_INCREMENT;
 ALTER TABLE parking_control ADD CONSTRAINT fk_parking_control_vehicles FOREIGN KEY (vehicle_id) REFERENCES vehicles (id);
-
-CREATE TABLE IF NOT EXISTS settings (
-	id INT(11),
-	parking_name VARCHAR(30) NOT NULL,
-	first_hour_value DECIMAL(12,2) NOT NULL,
-	other_hours_value DECIMAL(12,2) NOT NULL
-);
-
-ALTER TABLE settings ADD CONSTRAINT pk_settings PRIMARY KEY (id);
-ALTER TABLE settings MODIFY id INT(11) AUTO_INCREMENT;

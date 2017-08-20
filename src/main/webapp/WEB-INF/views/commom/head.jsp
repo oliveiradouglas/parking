@@ -63,6 +63,13 @@
 		</nav>
 	
 		<div class="container">
+			<c:if test="${ alert != null }">			
+				<div class="alert alert-${alert.type} alert-dismissable">
+			    	<a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+			    	${alert.message}
+			  	</div>
+			</c:if>
+		
 			<ol class="breadcrumb">
 				<c:forEach var="breadcrumb" items="${breadcrumbList}">
 					<c:choose>

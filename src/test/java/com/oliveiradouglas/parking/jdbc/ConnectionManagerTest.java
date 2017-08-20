@@ -9,6 +9,8 @@ import java.sql.SQLException;
 
 import org.junit.Test;
 
+import com.oliveiradouglas.parking.jdbc.ConnectionManager;
+
 public class ConnectionManagerTest {
 	@Test
 	public void testGetInstanceMustAlwayReturnTheSameInstanceOfClass() {

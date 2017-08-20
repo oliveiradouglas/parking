@@ -20,7 +20,9 @@ public class ConnectionManager {
 	public static ConnectionManager getInstance() {
 		if (instance == null) {
 			instance = new ConnectionManager();
-
+		}
+		
+		if (dataSource == null) {
 			Properties dbSettings = loadDbSettings();
 
 			MysqlDataSource mysqlDataSource = new MysqlDataSource();
@@ -38,7 +40,7 @@ public class ConnectionManager {
 	}
 
 	private static Properties loadDbSettings() {
-		try (InputStream fis = ClassLoader.class.getResourceAsStream("/db-settings.properties")) {
+		try (InputStream fis = ConnectionManager.class.getResourceAsStream("/db-settings.properties")) {
 			Properties properties = new Properties();
 			properties.load(fis);
 
