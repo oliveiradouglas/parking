@@ -38,7 +38,7 @@
 								<input type="text" class="form-control money" 
 								placeholder="<fmt:message key="type.value" />" 
 								name="first_hour_value" 
-								value="<fmt:formatNumber value="${ setting != null ? setting.firstHourValue : '' }" type="currency" currencySymbol="" />"" 
+								value="<fmt:formatNumber value="${setting != null ? setting.firstHourValue : ''}" type="currency" currencySymbol="" />"" 
 								maxlength="6"
 								required />
 							</div>
@@ -52,7 +52,7 @@
 								<input type="text" class="form-control money" 
 								placeholder="<fmt:message key="type.value" />" 
 								name="other_hours_value" 
-								value="<fmt:formatNumber value="${ setting != null ? setting.otherHoursValue : '' }" type="currency" currencySymbol="" />" 
+								value="<fmt:formatNumber value="${setting != null ? setting.otherHoursValue : ''}" type="currency" currencySymbol="" />" 
 								maxlength="6"
 								required />
 							</div>
