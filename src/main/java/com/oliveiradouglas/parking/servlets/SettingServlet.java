@@ -17,7 +17,7 @@ import com.oliveiradouglas.parking.dao.SettingDAO;
 import com.oliveiradouglas.parking.models.Alert;
 import com.oliveiradouglas.parking.models.Setting;
 import com.oliveiradouglas.parking.src.Breadcrumb;
-import com.oliveiradouglas.parking.src.NumberHelper;
+import com.oliveiradouglas.parking.src.NumberConverter;
 
 @WebServlet(urlPatterns="/settings")
 public class SettingServlet extends HttpServlet {
@@ -49,10 +49,11 @@ public class SettingServlet extends HttpServlet {
 		Double otherHoursValue = null;
 		
 		try {
-			firstHourValue = NumberHelper.convertStringToDouble(req.getParameter("first_hour_value"));
-			otherHoursValue = NumberHelper.convertStringToDouble(req.getParameter("other_hours_value"));
+			firstHourValue = NumberConverter.convertStringToDouble(req.getParameter("first_hour_value"));
+			otherHoursValue = NumberConverter.convertStringToDouble(req.getParameter("other_hours_value"));
 		} catch (ParseException e) {
 			// adicionar alerta de erro e redirecionar
+			System.out.println(e.getMessage());
 		}
 		
 		
