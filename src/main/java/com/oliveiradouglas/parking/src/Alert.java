@@ -1,4 +1,4 @@
-package com.oliveiradouglas.parking.models;
+package com.oliveiradouglas.parking.src;
 
 public class Alert {
 	public final static String ERROR = "danger";

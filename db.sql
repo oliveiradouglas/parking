@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS settings (
 ALTER TABLE settings ADD CONSTRAINT pk_settings PRIMARY KEY (id);
 ALTER TABLE settings MODIFY id INT(11) AUTO_INCREMENT;
 
+-- ok
 CREATE TABLE IF NOT EXISTS colors (
 	id INT(11),
 	name VARCHAR(50) NOT NULL
@@ -35,9 +36,6 @@ insert into parking.colors (name) values
 ("Branco"),
 ("Outra");
 
-
-
-
 CREATE TABLE IF NOT EXISTS vehicle_brands (
 	id INT(11),
 	name VARCHAR(50) NOT NULL
@@ -46,7 +44,16 @@ CREATE TABLE IF NOT EXISTS vehicle_brands (
 ALTER TABLE vehicle_brands ADD CONSTRAINT pk_vehicle_brands PRIMARY KEY (id);
 ALTER TABLE vehicle_brands MODIFY id INT(11) AUTO_INCREMENT;
 
-insert into vehicle_brands (name) values ("Ford");
+insert into vehicle_brands (name) values 
+("Audi"), ("BMW"), ("Chevrolet"), ("Ferrari"), ("Fiat"), ("Ford"), ("Honda"), ("Hyundai"),
+("Jaguar"), ("Jeep"), ("Kia"), ("Lamborghini"), ("Land Rover"), ("Lexus"), ("Lifan"),
+("Mercedes-Benz"), ("Mini"), ("Mitsubishi"), ("Nissan"), ("Peugeot"), ("Porsche"), ("Renault"),
+("Suzuki"), ("Toyota"), ("Volkswagen"), ("Volvo");
+
+
+
+
+
 
 CREATE TABLE IF NOT EXISTS vehicle_models (
 	id INT(11),

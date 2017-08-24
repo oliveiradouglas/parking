@@ -1,18 +1,9 @@
 package com.oliveiradouglas.parking.models;
 
-public class Setting {
-	private int id;
+public class Setting extends Model {
 	private String parkingName;
 	private double firstHourValue;
 	private double otherHoursValue;
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	public String getParkingName() {
 		return parkingName;

@@ -7,13 +7,13 @@ import java.util.List;
 
 import org.junit.Test;
 
-import com.oliveiradouglas.parking.models.Color;
+import com.oliveiradouglas.parking.models.VehicleBrand;
 
-public class ColorDAOTest {
+public class VehicleBrandDAOTest {
 	@Test
 	public void testFindAllMustReturnAllStoredColorsInDatabase() throws SQLException {
-		ColorDAO dao = new ColorDAO();
-		List<Color> colors = dao.findAll();
-		assertTrue(colors.size() >= 12);
+		VehicleBrandDAO dao = new VehicleBrandDAO();
+		List<VehicleBrand> brands = dao.findAll();
+		assertTrue(brands.size() >= 26);
 	}
 }

@@ -15,8 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.oliveiradouglas.parking.dao.SettingDAO;
-import com.oliveiradouglas.parking.models.Alert;
 import com.oliveiradouglas.parking.models.Setting;
+import com.oliveiradouglas.parking.src.Alert;
 import com.oliveiradouglas.parking.src.Breadcrumb;
 import com.oliveiradouglas.parking.src.NumberConverter;
 

@@ -12,7 +12,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import com.oliveiradouglas.parking.models.Alert;
+import com.oliveiradouglas.parking.src.Alert;
 
 @WebFilter(urlPatterns="/*")
 public class ServletFilter implements Filter {

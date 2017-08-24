@@ -1,10 +1,10 @@
-package com.oliveiradouglas.parking.models;
+package com.oliveiradouglas.parking.src;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import com.oliveiradouglas.parking.models.Alert;
+import com.oliveiradouglas.parking.src.Alert;
 
 public class AlertTest {
 	@Test
