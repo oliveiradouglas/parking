@@ -67,7 +67,7 @@ public class SettingServlet extends HttpServlet {
 		
 		try {
 			SettingDAO dao = new SettingDAO();
-			dao.save(setting);
+			dao.insert(setting);
 		} catch (SQLException e) {
 			session.setAttribute("alert", new Alert("Erro ao salvar as configurações!", Alert.ERROR));
 			resp.sendRedirect("settings");

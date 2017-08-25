@@ -1,4 +1,4 @@
-package com.oliveiradouglas.parking.models;
+package com.oliveiradouglas.parking.src;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;

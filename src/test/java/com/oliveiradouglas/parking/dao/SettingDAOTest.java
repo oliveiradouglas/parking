@@ -20,7 +20,7 @@ public class SettingDAOTest {
 		setting.setOtherHoursValue(5D);
 		
 		try {
-			dao.save(setting);
+			dao.insert(setting);
 			Setting savedSetting = dao.findSetting();
 			assertEquals(setting, savedSetting);
 

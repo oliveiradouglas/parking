@@ -36,59 +36,25 @@ insert into parking.colors (name) values
 ("Branco"),
 ("Outra");
 
-CREATE TABLE IF NOT EXISTS vehicle_brands (
-	id INT(11),
-	name VARCHAR(50) NOT NULL
-);
-
-ALTER TABLE vehicle_brands ADD CONSTRAINT pk_vehicle_brands PRIMARY KEY (id);
-ALTER TABLE vehicle_brands MODIFY id INT(11) AUTO_INCREMENT;
-
-insert into vehicle_brands (name) values 
-("Audi"), ("BMW"), ("Chevrolet"), ("Ferrari"), ("Fiat"), ("Ford"), ("Honda"), ("Hyundai"),
-("Jaguar"), ("Jeep"), ("Kia"), ("Lamborghini"), ("Land Rover"), ("Lexus"), ("Lifan"),
-("Mercedes-Benz"), ("Mini"), ("Mitsubishi"), ("Nissan"), ("Peugeot"), ("Porsche"), ("Renault"),
-("Suzuki"), ("Toyota"), ("Volkswagen"), ("Volvo");
-
-
-
-
-
-
-CREATE TABLE IF NOT EXISTS vehicle_models (
-	id INT(11),
-	vehicle_brand_id INT(11) NOT NULL,
-	description VARCHAR(50) NOT NULL,
-	type VARCHAR(20) NOT NULL
-);
-
-ALTER TABLE vehicle_models ADD CONSTRAINT pk_vehicle_models PRIMARY KEY (id);
-ALTER TABLE vehicle_models MODIFY id INT(11) AUTO_INCREMENT;
-ALTER TABLE vehicle_models ADD CONSTRAINT fk_vehicle_models_vehicle_brands FOREIGN KEY (vehicle_brand_id) REFERENCES vehicle_brands (id);
-
-
-
-
-
-
-
-
-
-
-
-
-
 CREATE TABLE IF NOT EXISTS vehicles (
 	id INT(11),
 	color_id INT(11) NOT NULL,
-	vehicle_model_id INT(11) NOT NULL,
+	type VARCHAR(50) NOT NULL,
+	brand VARCHAR(100) NOT NULL,
+	model VARCHAR(200) NOT NULL,
 	vehicle_plate VARCHAR(7) NOT NULL
 );
 
 ALTER TABLE vehicles ADD CONSTRAINT pk_vehicles PRIMARY KEY (id);
 ALTER TABLE vehicles MODIFY id INT(11) AUTO_INCREMENT;
-ALTER TABLE vehicles ADD CONSTRAINT fk_vehicles_vehicle_models FOREIGN KEY (vehicle_model_id) REFERENCES vehicle_models (id);
 ALTER TABLE vehicles ADD CONSTRAINT fk_vehicles_colors FOREIGN KEY (color_id) REFERENCES colors (id);
+
+
+
+
+
+
+
 
 CREATE TABLE IF NOT EXISTS parking_control (
 	id INT(11),
