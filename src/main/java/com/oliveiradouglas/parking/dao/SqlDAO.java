@@ -45,6 +45,16 @@ public abstract class SqlDAO implements DAO {
 		return records;
 	}
 	
+	public <T> T findById(Model object) throws SQLException {
+		String sql = String.format("SELECT * FROM %s WHERE id = ?;", getTableName());
+
+		List<T> records = select(sql, (stmt) -> {
+			stmt.setInt(1, object.getId());
+		});
+
+		return (records.size() == 1 ? records.get(0) : null);
+	}
+	
 	public void insert(Model object) throws SQLException {
 		String fieldsJoined = String.join(", ", getTableFields()); 
 		String sql = String.format(
@@ -53,7 +63,7 @@ public abstract class SqlDAO implements DAO {
 			fieldsJoined, 
 			fieldsJoined.replaceAll("[a-zA-Z_]+", "?")
 		);
-		
+		System.out.println(sql);
 		try (Connection con = ConnectionManager.getInstance().getConnection()) {
 			try (PreparedStatement stmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {				
 				setPropertiesToStatement(stmt, object);

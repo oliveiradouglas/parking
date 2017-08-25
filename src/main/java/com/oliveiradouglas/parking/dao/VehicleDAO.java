@@ -49,16 +49,6 @@ public class VehicleDAO extends SqlDAO {
 		stmt.setString(5, vehicle.getPlate());
 	}
 
-	public Vehicle findById(Vehicle vehicle) throws SQLException {
-		String sql = String.format("SELECT * FROM vehicles WHERE id = ?;", getTableName());
-
-		List<Vehicle> vehicles = select(sql, (stmt) -> {
-			stmt.setInt(1, vehicle.getId());
-		});
-
-		return (vehicles.size() == 1 ? vehicles.get(0) : null);
-	}
-
 	public Vehicle findByPlate(Vehicle vehicle) throws SQLException {
 		String sql = String.format("SELECT * FROM %s WHERE vehicle_plate = ?;", getTableName());
 

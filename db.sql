@@ -49,14 +49,7 @@ ALTER TABLE vehicles ADD CONSTRAINT pk_vehicles PRIMARY KEY (id);
 ALTER TABLE vehicles MODIFY id INT(11) AUTO_INCREMENT;
 ALTER TABLE vehicles ADD CONSTRAINT fk_vehicles_colors FOREIGN KEY (color_id) REFERENCES colors (id);
 
-
-
-
-
-
-
-
-CREATE TABLE IF NOT EXISTS parking_control (
+CREATE TABLE IF NOT EXISTS parkings (
 	id INT(11),
 	vehicle_id INT(11) NOT NULL,
 	notes VARCHAR(255),
@@ -64,6 +57,6 @@ CREATE TABLE IF NOT EXISTS parking_control (
 	`exit` DATETIME
 );
 
-ALTER TABLE parking_control ADD CONSTRAINT pk_parking_control PRIMARY KEY (id);
-ALTER TABLE parking_control MODIFY id INT(11) AUTO_INCREMENT;
-ALTER TABLE parking_control ADD CONSTRAINT fk_parking_control_vehicles FOREIGN KEY (vehicle_id) REFERENCES vehicles (id);
+ALTER TABLE parkings ADD CONSTRAINT pk_parkings PRIMARY KEY (id);
+ALTER TABLE parkings MODIFY id INT(11) AUTO_INCREMENT;
+ALTER TABLE parkings ADD CONSTRAINT fk_parkings_vehicles FOREIGN KEY (vehicle_id) REFERENCES vehicles (id);
