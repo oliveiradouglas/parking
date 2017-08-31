@@ -8,5 +8,6 @@ import com.oliveiradouglas.parking.models.Model;
 public interface DAO {
 	public <T> List<T> findAll() throws SQLException;
 	public void insert(Model object) throws SQLException;
+	public void update(Model object) throws SQLException;
 	public void delete(Model object) throws SQLException;
 }

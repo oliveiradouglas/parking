@@ -6,7 +6,7 @@ public class Parking extends Model {
 	private Vehicle vehicle;
 	private String notes;
 	private LocalDateTime entry;
-	private LocalDateTime exit;
+	private LocalDateTime output;
 
 	public Vehicle getVechile() {
 		return vehicle;
@@ -32,11 +32,11 @@ public class Parking extends Model {
 		this.entry = entry;
 	}
 
-	public LocalDateTime getExit() {
-		return exit;
+	public LocalDateTime getOutput() {
+		return output;
 	}
 
-	public void setExit(LocalDateTime exit) {
-		this.exit = exit;
+	public void setOutput(LocalDateTime output) {
+		this.output = output;
 	}
 }

@@ -54,7 +54,7 @@ CREATE TABLE IF NOT EXISTS parkings (
 	vehicle_id INT(11) NOT NULL,
 	notes VARCHAR(255),
 	entry DATETIME NOT NULL,
-	`exit` DATETIME
+	output DATETIME
 );
 
 ALTER TABLE parkings ADD CONSTRAINT pk_parkings PRIMARY KEY (id);

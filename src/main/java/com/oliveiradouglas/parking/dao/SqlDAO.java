@@ -63,7 +63,7 @@ public abstract class SqlDAO implements DAO {
 			fieldsJoined, 
 			fieldsJoined.replaceAll("[a-zA-Z_]+", "?")
 		);
-		System.out.println(sql);
+
 		try (Connection con = ConnectionManager.getInstance().getConnection()) {
 			try (PreparedStatement stmt = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {				
 				setPropertiesToStatement(stmt, object);
@@ -75,6 +75,25 @@ public abstract class SqlDAO implements DAO {
 					result.close();
 				} else {
 					throw new SQLException("Error on save record on database");
+				}
+			}
+		}
+	}
+	
+	public void update(Model object) throws SQLException {
+		String sql = String.format(
+			"UPDATE %s SET %s WHERE id = ?;", 
+			getTableName(), 
+			String.join(" = ?, ", getTableFields()) + " = ?"
+		);
+
+		try (Connection con = ConnectionManager.getInstance().getConnection()) {
+			try (PreparedStatement stmt = con.prepareStatement(sql)) {				
+				setPropertiesToStatement(stmt, object);
+				stmt.setInt(getTableFields().length + 1, object.getId());
+				
+				if (stmt.executeUpdate() != 1) {
+					throw new SQLException("Error on upate record on database");
 				}
 			}
 		}
