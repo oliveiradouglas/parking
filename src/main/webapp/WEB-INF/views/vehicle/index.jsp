@@ -3,6 +3,7 @@
 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://sargue.net/jsptags/time" prefix="javatime" %>
 
 <c:import url="../commom/head.jsp" />
 	<div class="container">
@@ -27,20 +28,20 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach var="parkingControl" items="${parkingControls}">						
+						<c:forEach var="parking" items="${parkings}">
 							<tr>
-								<td>${parkingControl.vehicle.description}</td>
-								<td>${parkingControl.color}</td>
-								<td>${parkingControl.vehicle_plate}</td>
+								<td>${parking.vehicle.model}</td>
+								<td>${parking.vehicle.color.name}</td>
+								<td>${parking.vehicle.plate}</td>
 								<td>
-									<fmt:formatDate value="${vehicle.entry}" type="both" dateStyle="short" timeStyle="short"/>
+									<javatime:format value="${parking.entry}" style="MS" />
 								</td>
 								<td class="text-center">
-									<button type="button" class="btn btn-default" title="<fmt:message key="view.details" />" data-item="${vehicle.id}">
+									<button type="button" class="btn btn-default" title="<fmt:message key="view.details" />" data-item="${parking.vehicle.id}">
 										<i class="fa fa-eye"></i>
 									</button>
 									
-									<button type="button" class="btn btn-danger btn-vehicle-exit" title="<fmt:message key="give.low" />" data-item="${vehicle.id}">
+									<button type="button" class="btn btn-danger btn-vehicle-exit" title="<fmt:message key="give.low" />" data-item="${parking.vehicle.id}">
 										<i class="fa fa-arrow-down"></i>
 									</button>
 								</td>

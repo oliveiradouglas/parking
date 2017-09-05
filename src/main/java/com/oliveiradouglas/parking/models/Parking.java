@@ -1,6 +1,9 @@
 package com.oliveiradouglas.parking.models;
 
+import java.sql.SQLException;
 import java.time.LocalDateTime;
+
+import com.oliveiradouglas.parking.dao.ParkingDAO;
 
 public class Parking extends Model {
 	private Vehicle vehicle;
@@ -8,7 +11,7 @@ public class Parking extends Model {
 	private LocalDateTime entry;
 	private LocalDateTime output;
 
-	public Vehicle getVechile() {
+	public Vehicle getVehicle() {
 		return vehicle;
 	}
 
@@ -38,5 +41,12 @@ public class Parking extends Model {
 
 	public void setOutput(LocalDateTime output) {
 		this.output = output;
+	}
+
+	public void giveLow() throws SQLException {
+		this.setOutput(LocalDateTime.now());
+		
+		ParkingDAO dao = new ParkingDAO();
+		dao.update(this);
 	}
 }

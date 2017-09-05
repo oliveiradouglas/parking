@@ -16,11 +16,19 @@ public abstract class SqlDAO implements DAO {
 	protected abstract String[] getTableFields();
 	protected abstract <T> T createObjectFromResultSet(ResultSet rs) throws SQLException;
 	protected abstract void setPropertiesToStatement(PreparedStatement stmt, Model object) throws SQLException;
+
+	protected String createBaseSelectSql() {
+		return String.format("SELECT * FROM %s %s", getTableName(), getTableAlias());
+	}
+
+	public String getTableAlias() {
+		System.out.println(getTableName().substring(0, 1));
+		return getTableName().substring(0, 1);
+	}
 	
 	@Override
 	public <T> List<T> findAll() throws SQLException {
-		String sql = String.format("SELECT * FROM %s;", getTableName());
-		return select(sql, null);
+		return select(createBaseSelectSql(), null);
 	}
 	
 	protected <T> List<T> select(String sql, PreparedStatementResolver resolver) throws SQLException {
@@ -46,7 +54,7 @@ public abstract class SqlDAO implements DAO {
 	}
 	
 	public <T> T findById(Model object) throws SQLException {
-		String sql = String.format("SELECT * FROM %s WHERE id = ?;", getTableName());
+		String sql = String.format(createBaseSelectSql() + " WHERE %s.id = ?;", getTableAlias());
 
 		List<T> records = select(sql, (stmt) -> {
 			stmt.setInt(1, object.getId());

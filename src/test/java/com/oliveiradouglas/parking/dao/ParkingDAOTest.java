@@ -1,6 +1,7 @@
 package com.oliveiradouglas.parking.dao;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
 import java.sql.SQLException;
@@ -20,10 +21,6 @@ public class ParkingDAOTest {
 	private Vehicle vehicle;
 	private VehicleDAO vehicleDAO;
 
-	// insert
-	// update
-	// dar baixa tem que gerar lançamento
-	
 	@Before
 	public void before() {
 		dao     = new ParkingDAO();
@@ -72,6 +69,12 @@ public class ParkingDAOTest {
 		
 		Parking parkingOfDb = dao.findById(parking);
 		assertEquals(parking.getOutput().withSecond(0).withNano(0), parkingOfDb.getOutput().withSecond(0).withNano(0));		
+	}
+	
+	@Test
+	public void testGiveLow() throws SQLException {
+		parking.giveLow();
+		assertNotNull(parking.getOutput());
 	}
 
 	@After
