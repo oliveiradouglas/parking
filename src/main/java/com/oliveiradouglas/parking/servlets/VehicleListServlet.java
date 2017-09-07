@@ -12,12 +12,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.oliveiradouglas.parking.dao.ColorDAO;
 import com.oliveiradouglas.parking.dao.ParkingDAO;
 import com.oliveiradouglas.parking.src.Alert;
 import com.oliveiradouglas.parking.src.Breadcrumb;
 
 @WebServlet(urlPatterns = "/vehicles")
-public class VehicleServlet extends HttpServlet {
+public class VehicleListServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
@@ -31,6 +32,9 @@ public class VehicleServlet extends HttpServlet {
 		try {
 			ParkingDAO dao = new ParkingDAO();
 			req.setAttribute("parkings", dao.findAll());
+			
+			ColorDAO colorDAO = new ColorDAO();
+			req.setAttribute("colors", colorDAO.findAll());
 		} catch (SQLException e) {
 			req.setAttribute("alert", new Alert("Erro ao carregar a lista de veiculos estacionados", Alert.ERROR));
 		}

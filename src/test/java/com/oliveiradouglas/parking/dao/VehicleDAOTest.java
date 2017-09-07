@@ -43,7 +43,7 @@ public class VehicleDAOTest {
 
 	@Test
 	public void testInsertVehicleMustStoreVehicleInDatabase() throws SQLException {
-		Vehicle storedVehicle = dao.findById(vehicle);
+		Vehicle storedVehicle = dao.findById(vehicle.getId());
 		assertEquals(vehicle, storedVehicle);
 	}
 

@@ -22,7 +22,6 @@ public abstract class SqlDAO implements DAO {
 	}
 
 	public String getTableAlias() {
-		System.out.println(getTableName().substring(0, 1));
 		return getTableName().substring(0, 1);
 	}
 	
@@ -53,11 +52,11 @@ public abstract class SqlDAO implements DAO {
 		return records;
 	}
 	
-	public <T> T findById(Model object) throws SQLException {
+	public <T> T findById(int id) throws SQLException {
 		String sql = String.format(createBaseSelectSql() + " WHERE %s.id = ?;", getTableAlias());
 
 		List<T> records = select(sql, (stmt) -> {
-			stmt.setInt(1, object.getId());
+			stmt.setInt(1, id);
 		});
 
 		return (records.size() == 1 ? records.get(0) : null);

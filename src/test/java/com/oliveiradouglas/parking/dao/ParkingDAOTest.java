@@ -57,7 +57,7 @@ public class ParkingDAOTest {
 	
 	@Test
 	public void testInsertParking() throws SQLException {
-		Parking parkingOfDb = dao.findById(parking);
+		Parking parkingOfDb = dao.findById(parking.getId());
 		assertEquals(parking, parkingOfDb);
 		assertNull(parkingOfDb.getOutput());
 	}
@@ -67,7 +67,7 @@ public class ParkingDAOTest {
 		parking.setOutput(LocalDateTime.now());
 		dao.update(parking);
 		
-		Parking parkingOfDb = dao.findById(parking);
+		Parking parkingOfDb = dao.findById(parking.getId());
 		assertEquals(parking.getOutput().withSecond(0).withNano(0), parkingOfDb.getOutput().withSecond(0).withNano(0));		
 	}
 	

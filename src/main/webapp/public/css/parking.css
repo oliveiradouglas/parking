@@ -6,3 +6,15 @@
 	font-size: 3em;
 	color: #ff0000;
 }
+
+.mb-50px {
+	margin-bottom: 50px;
+}
+
+.input-error {
+	border: 1px solid #FF0000;
+}
+
+.uppercase {
+	text-transform: uppercase;
+}
