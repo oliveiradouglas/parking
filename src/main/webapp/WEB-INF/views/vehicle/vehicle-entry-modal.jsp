@@ -100,7 +100,7 @@
 						<fmt:message key="cancel" />
 					</button>
 
-					<button type="submit" class="btn btn-success">
+					<button type="submit" class="btn btn-success" id="btn-submit">
 						<fmt:message key="save" />
 					</button>
 				</div>
@@ -123,7 +123,7 @@
 			$(this).addClass('input-error');
 		} else {
 			$(this).removeClass('input-error');
-			findAndFillVehicleData();
+			findAndFillParkingData();
 		}
 	});
 	
@@ -135,45 +135,91 @@
 		findModels();
 	});
 	
-	function findAndFillVehicleData() {
-		console.log('chamou aqui');
-	}
-	
-	function findBrands() {
+	function findAndFillParkingData() {
 		$.ajax({
-			url: 'https://fipe-parallelum.rhcloud.com/api/v1/' + $('[name="type"]:checked').val() + '/marcas',
+			url: '<c:url value="parkings" />',
 			type: 'GET',
 			dataType: 'json',
+			data: {
+				vehiclePlate: $('[name="vehicle_plate"]').val()
+			},
 			before: function() {
-				$('[name="brand"]').html('<option>Aguarde...</option>');
+				$('#btn-submit').text('<fmt:message key="wait"/>...');
 			},
 			success: function(data) {
-				var options = '<option value="" class="hide"><fmt:message key="select.an.option"/></option>';
-				data.forEach(function(brand) {
-					options += '<option value="' + brand.codigo + '">' + brand.nome + '</option>';
+				if (!data.hasOwnProperty('id')) {
+					return;
+				}
+				
+				$('[name="type"][value="' + data.type + '"]').attr('checked', 'checked');
+				
+				findBrands().then(function() {
+					console.log(data.brand);
+					$('[name="brand"]').val(data.brand);
+
+					findModels().then(function() {
+						console.log(data.model);
+						$('[name="model"]').val(data.model);
+					});
 				});
 				
-				$('[name="brand"]').html(options);
+				$('[name="color"]').val(data.color.id);
+				$('[name="notes"]').text(data.notes);
+			},
+			complete: function() {
+				$('#btn-submit').text('<fmt:message key="save"/>...');
 			}
 		});
+	}
+	
+	var FIPE_API_ENDPOINT = 'https://fipe-parallelum.rhcloud.com/api/v1/';
+	
+	function findBrands() {
+		return callFipeApi(
+			FIPE_API_ENDPOINT + $('[name="type"]:checked').val() + '/marcas',
+			function() {
+				$('[name="brand"]').html('<option><fmt:message key="wait"/>...</option>');
+			},
+			function(data) {				
+				fillSelectOptions($('[name="brand"]'), data);
+			}
+		);
+	}
+	
+	function callFipeApi(url, callbackBefore, callbackSuccess) {
+		return new Promise(function(resolve, reject) {			
+			$.ajax({
+				url: url,
+				type: 'GET',
+				dataType: 'json',
+				before: callbackBefore,
+				success: function(data) {
+					callbackSuccess(data);
+					resolve();
+				},
+				error: reject
+			});
+		});
+	}
+	
+	function fillSelectOptions(target, optionsData) {
+		var options = '<option value="" class="hide"><fmt:message key="select.an.option"/></option>';
+		optionsData.forEach(function(option) {
+			options += '<option value="' + option.codigo + '">' + option.nome + '</option>';
+		});
+		
+		target.html(options);
 	}
 	
 	function findModels() {
-		$.ajax({
-			url: 'https://fipe-parallelum.rhcloud.com/api/v1/' + $('[name="type"]:checked').val() + '/marcas/' + $('[name="brand"]').val() + '/modelos',
-			type: 'GET',
-			dataType: 'json',
-			before: function() {
-				$('[name="model"]').html('<option>Aguarde...</option>');
+		return callFipeApi(
+			FIPE_API_ENDPOINT + $('[name="type"]:checked').val() + '/marcas/' + $('[name="brand"]').val() + '/modelos',
+			function() {
+				$('[name="model"]').html('<option><fmt:message key="wait"/>...</option>');
 			},
-			success: function(data) {
-				var options = '<option value="" class="hide"><fmt:message key="select.an.option"/></option>';
-				data.modelos.forEach(function(model) {
-					options += '<option value="' + model.codigo + '">' + model.nome + '</option>';
-				});
-				
-				$('[name="model"]').html(options);
+			function(data) {				
+				fillSelectOptions($('[name="model"]'), data.modelos);
 			}
-		});
+		);
 	}
 </script>

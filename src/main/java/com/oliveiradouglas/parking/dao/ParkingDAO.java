@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import com.oliveiradouglas.parking.models.Color;
 import com.oliveiradouglas.parking.models.Model;
@@ -28,7 +29,7 @@ public class ParkingDAO extends SqlDAO {
 	protected String createBaseSelectSql() {
 		return String.format("SELECT "
 				+ "p.id id, p.notes notes, p.entry entry, p.output output, "
-				+ "v.id vehicle_id, v.model as vehicle_model, v.vehicle_plate vehicle_plate, "
+				+ "v.id vehicle_id, v.brand as vehicle_brand, v.model as vehicle_model, v.vehicle_plate vehicle_plate, "
 				+ "c.id color_id, c.name as color_name "
 				+ "FROM %s p "
 				+ "INNER JOIN vehicles v "
@@ -50,6 +51,7 @@ public class ParkingDAO extends SqlDAO {
 		
 		Vehicle vehicle = new Vehicle();
 		vehicle.setId(rs.getInt("vehicle_id"));
+		vehicle.setBrand(rs.getString("vehicle_brand"));
 		vehicle.setModel(rs.getString("vehicle_model"));
 		vehicle.setPlate(rs.getString("vehicle_plate"));
 		
@@ -73,6 +75,16 @@ public class ParkingDAO extends SqlDAO {
 		
 		LocalDateTime output = parking.getOutput();
 		stmt.setTimestamp(4, (output != null ? Timestamp.valueOf(output) : null));
+	}
+
+	public Parking findByVehiclePlate(Vehicle vehicle) throws SQLException {
+		String sql = createBaseSelectSql() + " WHERE v.vehicle_plate = ?;";
+
+		List<Parking> records = select(sql, (stmt) -> {
+			stmt.setString(1, vehicle.getPlate());
+		});
+
+		return (records.size() > 0 ? records.get(records.size() - 1) : null);
 	}
 
 }

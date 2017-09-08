@@ -9,9 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.oliveiradouglas.parking.dao.ParkingDAO;
+import org.json.JSONObject;
 
-@WebServlet(urlPatterns = "/parkings/{id}")
+import com.oliveiradouglas.parking.dao.ParkingDAO;
+import com.oliveiradouglas.parking.models.Parking;
+import com.oliveiradouglas.parking.models.Vehicle;
+
+@WebServlet(urlPatterns = "/parkings")
 public class ParkingDatailsServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -19,14 +23,23 @@ public class ParkingDatailsServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {		
 		try {
-			String id = req.getParameter("id");
+			Vehicle vehicle = new Vehicle();
+			vehicle.setPlate(req.getParameter("vehiclePlate").replace("-", ""));
 
-			ParkingDAO dao = new ParkingDAO();
-			req.setAttribute("parking", dao.findById(Integer.parseInt(id)));
+			ParkingDAO dao  = new ParkingDAO();
+			Parking parking = dao.findByVehiclePlate(vehicle); 
 			
-			resp.getWriter().write("sucesso");
+			resp.setContentType("application/json");
+			resp.setCharacterEncoding("utf-8");
+			
+			if (parking != null) {				
+				JSONObject json = new JSONObject(parking.getVehicle());
+				resp.getWriter().write(json.toString());
+			} else {
+				resp.getWriter().write("{}");
+			}
 		} catch (SQLException e) {
-			resp.getWriter().write("erro");
+			resp.getWriter().write("{}");
 		}
 	}
 }
