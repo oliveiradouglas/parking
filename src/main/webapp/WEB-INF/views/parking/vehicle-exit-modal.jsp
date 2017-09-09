@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <div id="vehicle-exit-modal" class="modal fade" role="dialog">
 	<div class="modal-dialog">
@@ -12,7 +13,9 @@
 				</h4>
 			</div>
 
-			<form method="post" class="form-horizontal">
+			<form method="post" action="<c:url value="parked-vehicle" />" class="form-horizontal">
+				<input type="hidden" id="ve-parking-id" name="id" />
+				
 				<div class="modal-body">			
 					<div class="form-group">
 						<div class="col-sm-6">
@@ -43,7 +46,7 @@
 							</label>
 							
 							<div class="col-sm-12">
-								<input type="text" class="form-control" disabled="disabled" id="ve-entry-time" />
+								<input type="text" class="form-control" disabled="disabled" id="ve-entry" />
 							</div>
 						</div>
 						
@@ -60,61 +63,34 @@
 					
 					<div class="form-group">
 						<div class="col-sm-6">
-							<label class="col-sm-12"> 
-								<fmt:message key="form.of.payment" />
-							</label>
-							
-							<div class="col-sm-12">
-								<select class="form-control" name="form_payment_id" required>
-									<option value="" selected="selected">
-										<fmt:message key="select.an.option"/>
-									</option>
-								</select>
-							</div>
-						</div>
-						
-						<div class="col-sm-6">
-							<label class="col-sm-12"> 
-								<fmt:message key="paid.value" />
-							</label>
-							
-							<div class="col-sm-12">
-								<input type="text" class="form-control" name="paid_value" maxlength="12" required />
-							</div>
-						</div>
-					</div>
-					
-					<div class="form-group">
-						<div class="col-sm-6">
 							<label class="col-sm-12">
 								<fmt:message key="notes" />
 							</label>
 							
 							<div class="col-sm-12">
-								<textarea class="form-control" maxlength="255" rows="4" name="notes"></textarea>
+								<textarea class="form-control" maxlength="255" rows="3" id="ve-notes" disabled></textarea>
 							</div>
 						</div>
-						
+
 						<div class="col-sm-6">
 							<label class="col-sm-12"> 
 								<fmt:message key="total" />
 							</label>
 							
 							<div class="col-sm-12" id="ve-total-box">
-								<fmt:message key="monetary.symbol" />
-								<span>0,00</span>
+								<span id="ve-total">0,00</span>
 							</div>
 						</div>
 					</div>
 				</div>
 
 				<div class="modal-footer">
-					<button type="button" class="btn btn-danger" data-dismiss="modal">
+					<button type="button" class="btn btn-danger" data-dismiss="modal" onclick="clearData();">
 						<fmt:message key="cancel" />
 					</button>
 
-					<button type="submit" class="btn btn-success">
-						<fmt:message key="save" />
+					<button type="submit" id="btn-submit" class="btn btn-success">
+						<fmt:message key="register" />
 					</button>
 				</div>
 			</form>
@@ -125,5 +101,34 @@
 <script type="text/javascript">
 	$('.btn-vehicle-exit').click(function() {
 		$('#vehicle-exit-modal').modal('show');
+		clearData();
+		findParkedVehicleData($(this).attr('data-parking'));
 	});
+	
+	function findParkedVehicleData(parkingId) {
+		$.ajax({
+			url: '<c:url value="parked-vehicle" />',
+			type: 'GET',
+			dataType: 'json',
+			data: {
+				id: parkingId
+			},
+			success: function(data) {
+				if (!data) return;
+				
+				$('#ve-parking-id').val(data.id);
+				$('#ve-vehicle').val(data.vehicle.model.split('-')[1]);
+				$('#ve-vehicle-plate').val(data.vehicle.plate);
+				$('#ve-entry').val(new Date(data.entry).toLocaleString());
+				$('#ve-permanence').val(data.permanence + ' hora(s)');
+				$('#ve-notes').text(data.notes);
+				$('#ve-total').text(data.total);
+			}
+		});
+	}
+	
+	function clearData() {
+		$('#ve-parking-id, #ve-vehicle, #ve-vehicle-plate, #ve-entry, #ve-permanence').val('');
+		$('#ve-notes, #ve-total').text('');
+	}
 </script>

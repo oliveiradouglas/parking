@@ -53,13 +53,22 @@ public abstract class SqlDAO implements DAO {
 	}
 	
 	public <T> T findById(int id) throws SQLException {
-		String sql = String.format(createBaseSelectSql() + " WHERE %s.id = ?;", getTableAlias());
+		String sqlBase = createBaseSelectSql();
+		String sql 	   = String.format(sqlBase + " %s %s.id = ?;", getSqlClauseForCondition(sqlBase), getTableAlias());
 
 		List<T> records = select(sql, (stmt) -> {
 			stmt.setInt(1, id);
 		});
 
 		return (records.size() == 1 ? records.get(0) : null);
+	}
+	
+	private String getSqlClauseForCondition(String sqlBase) {
+		if (sqlBase.contains("WHERE")) {
+			return "AND";
+		}
+		
+		return "WHERE";
 	}
 	
 	public void insert(Model object) throws SQLException {

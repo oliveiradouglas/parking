@@ -14,6 +14,8 @@
 			</div>
 
 			<form method="post" action="<c:url value="parkings" />" class="form-horizontal">
+				<input type="hidden" name="vehicleId" />
+			
 				<div class="modal-body">
 					<div class="form-group">
 						<label class="control-label col-sm-4"> 
@@ -125,7 +127,7 @@
 			$(this).addClass('input-error');
 		} else {
 			$(this).removeClass('input-error');
-			findAndFillParkingData();
+			findVehicleAndFillForm();
 		}
 	});
 	
@@ -137,10 +139,10 @@
 	$('[name="brand"]').change(function() {
 		findModels();
 	});
-	
-	function findAndFillParkingData() {
+
+	function findVehicleAndFillForm() {
 		$.ajax({
-			url: '<c:url value="parkings" />',
+			url: '<c:url value="vehicles" />',
 			type: 'GET',
 			dataType: 'json',
 			data: {
@@ -154,18 +156,19 @@
 					return;
 				}
 				
+				$('[name="vehicleId"]').val(data.id);
 				$('[name="type"]:checked').removeAttr('checked');
-				$('[name="type"][value="' + data.vehicle.type + '"]').attr('checked', 'checked');
+				$('[name="type"][value="' + data.type + '"]').attr('checked', 'checked');
 				
 				findBrands().then(function() {
-					$('[name="brand"]').val(data.vehicle.brand);
+					$('[name="brand"]').val(data.brand);
 
 					findModels().then(function() {
-						$('[name="model"]').val(data.vehicle.model);
+						$('[name="model"]').val(data.model);
 					});
 				});
 				
-				$('[name="color"]').val(data.vehicle.color.id);
+				$('[name="color"]').val(data.color.id);
 				$('[name="notes"]').text(data.notes);
 			},
 			complete: function() {
@@ -175,7 +178,7 @@
 	}
 	
 	function clearForm() {
-		$('[name="brand"], [name="model"], [name="color"]').val('');
+		$('[name="brand"], [name="model"], [name="color"], [name="vehicleId"]').val('');
 		$('[name="notes"]').text('');
 	}
 	
@@ -212,7 +215,7 @@
 	function fillSelectOptions(target, optionsData) {
 		var options = '<option value="" class="hide"><fmt:message key="select.an.option"/></option>';
 		optionsData.forEach(function(option) {
-			options += '<option value="' + option.codigo + '">' + option.nome + '</option>';
+			options += '<option value="' + option.codigo + '-' + option.nome + '">' + option.nome + '</option>';
 		});
 		
 		target.html(options);
@@ -220,7 +223,7 @@
 	
 	function findModels() {
 		return callFipeApi(
-			FIPE_API_ENDPOINT + $('[name="type"]:checked').val() + '/marcas/' + $('[name="brand"]').val() + '/modelos',
+			FIPE_API_ENDPOINT + $('[name="type"]:checked').val() + '/marcas/' + $('[name="brand"]').val().split('-')[0] + '/modelos',
 			function() {
 				$('[name="model"]').html('<option><fmt:message key="wait"/>...</option>');
 			},

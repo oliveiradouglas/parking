@@ -30,18 +30,14 @@
 					<tbody>
 						<c:forEach var="parking" items="${parkings}">
 							<tr>
-								<td>${parking.vehicle.model}</td>
+								<td>${parking.vehicle.model.split("-", 2)[1]}</td>
 								<td>${parking.vehicle.color.name}</td>
-								<td>${parking.vehicle.plate}</td>
+								<td>${parking.vehicle.getPlateMasked()}</td>
 								<td>
 									<javatime:format value="${parking.entry}" style="MS" />
 								</td>
-								<td class="text-center">
-									<button type="button" class="btn btn-default" title="<fmt:message key="view.details" />" data-item="${parking.vehicle.id}">
-										<i class="fa fa-eye"></i>
-									</button>
-									
-									<button type="button" class="btn btn-danger btn-vehicle-exit" title="<fmt:message key="give.low" />" data-item="${parking.vehicle.id}">
+								<td class="text-center">									
+									<button type="button" class="btn btn-danger btn-vehicle-exit" title="<fmt:message key="give.low" />" data-parking="${parking.id}">
 										<i class="fa fa-arrow-down"></i>
 									</button>
 								</td>

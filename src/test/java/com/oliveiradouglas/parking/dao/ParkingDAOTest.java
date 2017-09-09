@@ -76,12 +76,6 @@ public class ParkingDAOTest {
 		parking.giveLow();
 		assertNotNull(parking.getOutput());
 	}
-	
-	@Test
-	public void testFindByVehiclePlate() throws SQLException {
-		Parking parkingOfDb = dao.findByVehiclePlate(vehicle);
-		assertEquals(parking, parkingOfDb);
-	}
 
 	@After
 	public void after() throws SQLException {

@@ -38,6 +38,12 @@ public class ParkingDAO extends SqlDAO {
 				+ "ON c.id = v.color_id", getTableName());
 	}
 
+	public List<Parking> findAllParkedVehicles() throws SQLException {
+		String sql = createBaseSelectSql() + " WHERE p.output IS NULL;";
+		List<Parking> records = select(sql, null);
+		return records;
+	}
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	protected Parking createObjectFromResultSet(ResultSet rs) throws SQLException {
@@ -78,14 +84,13 @@ public class ParkingDAO extends SqlDAO {
 		stmt.setTimestamp(4, (output != null ? Timestamp.valueOf(output) : null));
 	}
 
-	public Parking findByVehiclePlate(Vehicle vehicle) throws SQLException {
-		String sql = createBaseSelectSql() + " WHERE v.vehicle_plate = ?;";
+	public boolean checkIfVehicleIsParked(Vehicle vehicle) throws SQLException {
+		String sql = createBaseSelectSql() + " WHERE p.output IS NULL AND v.id = ?;";
 
 		List<Parking> records = select(sql, (stmt) -> {
-			stmt.setString(1, vehicle.getPlate());
+			stmt.setInt(1, vehicle.getId());
 		});
 
-		return (records.size() > 0 ? records.get(records.size() - 1) : null);
+		return records.size() > 0;
 	}
-
 }

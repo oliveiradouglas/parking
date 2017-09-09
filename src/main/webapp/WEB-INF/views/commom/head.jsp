@@ -36,9 +36,9 @@
 				<div id="navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav navbar-right">
 						<li id="menu-vehicles">
-							<a href="<c:url value="/vehicles" />"> 
+							<a href="<c:url value="/parkings" />"> 
 								<i class="fa fa-car"></i> 
-								<fmt:message key="vehicles" />
+								<fmt:message key="parked.vehicles" />
 							</a>
 						</li>
 						
