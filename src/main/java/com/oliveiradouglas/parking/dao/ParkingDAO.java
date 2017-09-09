@@ -29,7 +29,7 @@ public class ParkingDAO extends SqlDAO {
 	protected String createBaseSelectSql() {
 		return String.format("SELECT "
 				+ "p.id id, p.notes notes, p.entry entry, p.output output, "
-				+ "v.id vehicle_id, v.brand as vehicle_brand, v.model as vehicle_model, v.vehicle_plate vehicle_plate, "
+				+ "v.id vehicle_id, v.type vehicle_type, v.brand as vehicle_brand, v.model as vehicle_model, v.vehicle_plate vehicle_plate, "
 				+ "c.id color_id, c.name as color_name "
 				+ "FROM %s p "
 				+ "INNER JOIN vehicles v "
@@ -51,6 +51,7 @@ public class ParkingDAO extends SqlDAO {
 		
 		Vehicle vehicle = new Vehicle();
 		vehicle.setId(rs.getInt("vehicle_id"));
+		vehicle.setType(rs.getString("vehicle_type"));
 		vehicle.setBrand(rs.getString("vehicle_brand"));
 		vehicle.setModel(rs.getString("vehicle_model"));
 		vehicle.setPlate(rs.getString("vehicle_plate"));

@@ -15,8 +15,8 @@ public class Parking extends Model {
 		return vehicle;
 	}
 
-	public void setVehicle(Vehicle vechile) {
-		this.vehicle = vechile;
+	public void setVehicle(Vehicle vehicle) {
+		this.vehicle = vehicle;
 	}
 
 	public String getNotes() {

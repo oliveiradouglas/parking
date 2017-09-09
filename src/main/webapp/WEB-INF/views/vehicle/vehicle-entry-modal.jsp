@@ -13,7 +13,7 @@
 				</h4>
 			</div>
 
-			<form method="post" class="form-horizontal">
+			<form method="post" action="<c:url value="parkings" />" class="form-horizontal">
 				<div class="modal-body">
 					<div class="form-group">
 						<label class="control-label col-sm-4"> 
@@ -96,7 +96,7 @@
 				</div>
 
 				<div class="modal-footer">
-					<button type="button" class="btn btn-danger" data-dismiss="modal">
+					<button type="button" class="btn btn-danger" data-dismiss="modal" onclick="clearForm();">
 						<fmt:message key="cancel" />
 					</button>
 
@@ -119,6 +119,8 @@
 
 	VMasker(document.querySelector('[name="vehicle_plate"]')).maskPattern("AAA-9999");
 	$('[name="vehicle_plate"]').blur(function() {
+		clearForm();
+		
 		if ($(this).val().length < 8) {
 			$(this).addClass('input-error');
 		} else {
@@ -128,6 +130,7 @@
 	});
 	
 	$('[name="type"]').click(function() {
+		clearForm();
 		findBrands();
 	});
 	
@@ -151,25 +154,29 @@
 					return;
 				}
 				
-				$('[name="type"][value="' + data.type + '"]').attr('checked', 'checked');
+				$('[name="type"]:checked').removeAttr('checked');
+				$('[name="type"][value="' + data.vehicle.type + '"]').attr('checked', 'checked');
 				
 				findBrands().then(function() {
-					console.log(data.brand);
-					$('[name="brand"]').val(data.brand);
+					$('[name="brand"]').val(data.vehicle.brand);
 
 					findModels().then(function() {
-						console.log(data.model);
-						$('[name="model"]').val(data.model);
+						$('[name="model"]').val(data.vehicle.model);
 					});
 				});
 				
-				$('[name="color"]').val(data.color.id);
+				$('[name="color"]').val(data.vehicle.color.id);
 				$('[name="notes"]').text(data.notes);
 			},
 			complete: function() {
-				$('#btn-submit').text('<fmt:message key="save"/>...');
+				$('#btn-submit').text('<fmt:message key="save"/>');
 			}
 		});
+	}
+	
+	function clearForm() {
+		$('[name="brand"], [name="model"], [name="color"]').val('');
+		$('[name="notes"]').text('');
 	}
 	
 	var FIPE_API_ENDPOINT = 'https://fipe-parallelum.rhcloud.com/api/v1/';

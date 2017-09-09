@@ -43,11 +43,11 @@ public class Vehicle extends Model {
 	}
 
 	public String getPlate() {
-		return plate;
+		return plate.substring(0, 3) + "-" + plate.substring(3);
 	}
 
 	public void setPlate(String plate) {
-		this.plate = plate;
+		this.plate = plate.replace("-", "");
 	}
 
 }
